@@ -1,0 +1,524 @@
+timestamp: 2015-08-06T11:39:54.058547
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2015-08-06T11:39:54.286553
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2015-08-06T11:39:54.454759
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2015-08-06T11:39:54.748813
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2015-08-06T11:39:54.941433
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2015-08-06T11:39:55.129121
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2015-08-06T11:42:10.900153
+CREATE TABLE materia(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre CHAR(512) UNIQUE
+);
+success!
+timestamp: 2015-08-06T11:42:11.120875
+CREATE TABLE correlativa(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    materia INTEGER REFERENCES materia (id) ON DELETE CASCADE,
+    apc TEXT,
+    rpc TEXT
+);
+success!
+success!
+timestamp: 2015-08-07T11:25:47.740009
+CREATE TABLE estado_academico(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    usuario INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    regulares TEXT,
+    aprobadas TEXT
+);
+success!
+success!
+timestamp: 2015-08-07T12:15:56.940523
+ALTER TABLE materia ADD anio CHAR(512);
+success!
+success!
+DELETE FROM materia;
+DELETE FROM sqlite_sequence WHERE name='materia';
+success!
+DELETE FROM correlativa;
+DELETE FROM sqlite_sequence WHERE name='correlativa';
+success!
+DELETE FROM estado_academico;
+DELETE FROM sqlite_sequence WHERE name='estado_academico';
+success!
+DELETE FROM materia;
+DELETE FROM sqlite_sequence WHERE name='materia';
+success!
+DELETE FROM correlativa;
+DELETE FROM sqlite_sequence WHERE name='correlativa';
+success!
+DELETE FROM estado_academico;
+DELETE FROM sqlite_sequence WHERE name='estado_academico';
+success!
+DELETE FROM materia;
+DELETE FROM sqlite_sequence WHERE name='materia';
+success!
+DELETE FROM correlativa;
+DELETE FROM sqlite_sequence WHERE name='correlativa';
+success!
+DELETE FROM estado_academico;
+DELETE FROM sqlite_sequence WHERE name='estado_academico';
+success!
+DELETE FROM materia;
+DELETE FROM sqlite_sequence WHERE name='materia';
+success!
+DELETE FROM correlativa;
+DELETE FROM sqlite_sequence WHERE name='correlativa';
+success!
+DELETE FROM estado_academico;
+DELETE FROM sqlite_sequence WHERE name='estado_academico';
+success!
+DELETE FROM materia;
+DELETE FROM sqlite_sequence WHERE name='materia';
+success!
+DELETE FROM correlativa;
+DELETE FROM sqlite_sequence WHERE name='correlativa';
+success!
+DELETE FROM estado_academico;
+DELETE FROM sqlite_sequence WHERE name='estado_academico';
+success!
+DELETE FROM materia;
+DELETE FROM sqlite_sequence WHERE name='materia';
+success!
+DELETE FROM correlativa;
+DELETE FROM sqlite_sequence WHERE name='correlativa';
+success!
+DELETE FROM estado_academico;
+DELETE FROM sqlite_sequence WHERE name='estado_academico';
+success!
+DELETE FROM materia;
+DELETE FROM sqlite_sequence WHERE name='materia';
+success!
+DELETE FROM correlativa;
+DELETE FROM sqlite_sequence WHERE name='correlativa';
+success!
+DELETE FROM estado_academico;
+DELETE FROM sqlite_sequence WHERE name='estado_academico';
+success!
+timestamp: 2015-08-09T21:50:09.022194
+CREATE TABLE horario(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    turno CHAR(512),
+    materia INTEGER REFERENCES materia (id) ON DELETE CASCADE,
+    comision CHAR(512),
+    dia CHAR(512)
+);
+success!
+timestamp: 2015-08-09T21:50:41.902919
+ALTER TABLE horario ADD modulo CHAR(512);
+success!
+timestamp: 2015-08-10T20:13:07.727839
+ALTER TABLE auth_user ADD username CHAR(128);
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2015-08-10T20:14:46.952406
+CREATE TABLE turno(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    descripcion CHAR(512)
+);
+success!
+timestamp: 2015-08-10T20:14:47.098594
+CREATE TABLE modulo(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    turno CHAR(512),
+    hora_inicio CHAR(512)
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2015-08-10T20:19:46.921330
+ALTER TABLE turno ADD numero_turno CHAR(512);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2015-08-10T20:23:46.934198
+ALTER TABLE modulo ADD numero_modulo CHAR(512);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+DELETE FROM horario;
+DELETE FROM sqlite_sequence WHERE name='horario';
+success!
+success!
+timestamp: 2015-08-10T20:58:05.356139
+CREATE TABLE horario_clases(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    turno INTEGER REFERENCES turno (id) ON DELETE CASCADE,
+    materia INTEGER REFERENCES materia (id) ON DELETE CASCADE,
+    comision CHAR(512),
+    dia CHAR(512),
+    modulo TEXT
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
