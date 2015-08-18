@@ -133,6 +133,8 @@ db.define_table('horario_clases',
                 Field('modulo','list:reference modulo', label='Módulo', widget=SQLFORM.widgets.checkboxes.widget)
                )
 
+for table in db.tables():
+    db[table].id.readable = False
 
 
 
