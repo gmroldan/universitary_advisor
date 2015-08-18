@@ -89,9 +89,12 @@ auth.settings.reset_password_requires_verification = True
 #########################################################################
 
 db.define_table('materia',
-               Field('nombre', unique=True),
-               Field('anio', widget=SQLFORM.widgets.radio.widget, requires=IS_IN_SET(['1', '2', '3', '4', '5']), label='Año'),
-               format='%(nombre)s'
+                Field('anio', widget=SQLFORM.widgets.radio.widget, requires=IS_IN_SET(['1', '2', '3', '4', '5']), label='Año'),
+                Field('nombre', unique=True),
+                Field('anual', label='Carga Horaria Anual'),
+                Field('primer_cuatrimestre', label='Carga Horaria 1C'),
+                Field('segundo_cuatrimestre', label='Carga Horaria 2C'),
+                format='%(nombre)s'
                )
 
 db.define_table('correlativa',
@@ -100,14 +103,16 @@ db.define_table('correlativa',
                 Field('apc','list:reference materia', label='Aprobadas para Cursar', widget=SQLFORM.widgets.checkboxes.widget)
                )
 
+
 db.define_table('estado_academico',
                 Field('usuario',db.auth_user, default=auth.user_id, readable=True, writable=False, unique=True),
                 Field('regulares','list:reference materia', label='Regulares', widget=SQLFORM.widgets.checkboxes.widget),
                 Field('aprobadas','list:reference materia', label='Aprobadas', widget=SQLFORM.widgets.checkboxes.widget)
                )
 
+
 db.define_table('turno',
-                Field('descripcion', requires=IS_IN_SET(['mañana','tarde','noche'])),
+                Field('descripcion', requires=IS_IN_SET(['Mañana','Tarde','Noche'])),
                 Field('numero_turno', requires=IS_IN_SET(['0','1','2'])),
                 format='%(numero_turno)s'
                )
@@ -115,7 +120,7 @@ db.define_table('turno',
 db.define_table('modulo',
                 Field('turno', db.turno),
                 Field('hora_inicio', type='time' ,label="Hora de Inicio"),
-                Field('numero_modulo', requires=IS_IN_SET(['0','1','2','3','4','5','6','7'])),
+                Field('numero_modulo', requires=IS_IN_SET(['-1','0','1','2','3','4','5','6','7'])),
                 format='%(numero_modulo)s'
                )
 
@@ -128,11 +133,8 @@ db.define_table('horario_clases',
                 Field('modulo','list:reference modulo', label='Módulo', widget=SQLFORM.widgets.checkboxes.widget)
                )
 
-
-## db.materia.truncate('RESTART IDENTITY CASCADE')
-## db.correlativa.truncate('RESTART IDENTITY CASCADE')
-## db.estado_academico.truncate('RESTART IDENTITY CASCADE')
-## db.horario.truncate('RESTART IDENTITY CASCADE')
+for table in db.tables():
+    db[table].id.readable = False
 
 
 
