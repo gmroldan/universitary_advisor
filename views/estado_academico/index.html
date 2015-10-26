@@ -14,16 +14,18 @@
 <div class="row">
                 <div class="col-lg-12">
                             <div class="panel-group" id="accordion">
-                                {{ for key, value in sorted(anios.iteritems()): }}
+                                {{ for key, value in sorted(anios.iteritems()): }}                                
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{= value}}">{{= key}}º Año</a>
-                                                  <label class="pull-right">
-                                                      <input type="checkbox" value="">
-                                                  </label>
-                                            </h4>
-                                        </div>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{= value}}">
+                                                <h4 class="panel-title">
+                                                    {{= key}} Año
+                                                      <label class="pull-right">
+                                                          <input type="checkbox" value="">
+                                                      </label>
+                                                </h4>
+                                            </a>
+                                        </div>                                        
                                         <div id="collapse{{= value}}" class="panel-collapse collapse">
                                             <div class="panel-body">
                                                     <div class="table-responsive">
