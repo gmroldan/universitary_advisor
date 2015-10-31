@@ -1,0 +1,53 @@
+{{extend 'layout.html'}}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+<style>
+	  #feedback { font-size: 1.4em; }
+	  #selectable .ui-selecting { background: #FECA40; }
+	  #selectable .ui-selected { background: #F39814; color: white; }
+	  #selectable { list-style-type: none; margin: 0; padding: 0; width: 450px; }
+	  #selectable li { margin: 3px; padding: 1px; float: left; width: 100px; height: 80px; font-size: 4em; text-align: center; }
+</style>
+
+<script>
+	  $(function() {
+		$( "#selectable" ).selectable( {
+				filter:'td',
+				selected: function(event, ui){
+				console.log( "SELECTED " + $(ui.selected).find("th").html() );
+				}
+			});
+	  });
+</script>
+
+<!-- <div class="table-responsive"> -->
+<div class="col-lg-2">
+	     <table class="table table-bordered table-striped">
+	         <thead>
+	             <tr>
+	                 <th></th>
+	                 <th>Lunes</th>
+	                 <th>Martes</th>
+	                 <th>Miércoles</th>
+	                 <th>Jueves</th>
+	                 <th>Viernes</th>
+	             </tr>
+	         </thead>
+	         <tbody id="selectable" class="selectable">
+                 {{ for horario in horarios: }}
+                     <tr>
+                         <th>{{= horario.strftime("%H:%M") }}</th>
+                         <td class="ui-state-default"></td>
+                         <td class="ui-state-default"></td>
+                         <td class="ui-state-default"></td>
+                         <td class="ui-state-default"></td>
+                         <td class="ui-state-default"></td>
+                     </tr>
+                 {{ pass }}
+	         </tbody>
+	     </table>
+	 </div>
