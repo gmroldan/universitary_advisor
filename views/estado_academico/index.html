@@ -1,32 +1,32 @@
 {{extend 'layout.html'}}
+<script type="text/javascript" src="/universitary_advisor/static/js/estado-academico.js"></script>
 
-<style type="text/css"> 
-			.btn span.glyphicon {    			
-				opacity: 0;				
-			}
-			
-			.btn.active span.glyphicon {				
-				opacity: 1;				
-			} 
-	</style>
+<style type="text/css">
+    .btn span.glyphicon {
+        opacity: 0;
+    }
+
+    .btn.active span.glyphicon {
+        opacity: 1;
+    }
+</style>
 
 <h1>Estado Académico</h1>
-<div class="row">
-                <div class="col-lg-12">
+<div ng-app="estadoAcademico" class="row">
+                <div ng-controller="EstadoAcademicoController as controller" class="col-lg-12">
                             <div class="panel-group" id="accordion">
-                                {{ for key, value in sorted(anios.iteritems()): }}                                
-                                    <div class="panel panel-default">
+                                    <div class="panel panel-default" ng-repeat="anio in controller.anios">
                                         <div class="panel-heading">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{= value}}">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#{! anio.reference !}">
                                                 <h4 class="panel-title">
-                                                    {{= key}} Año
-                                                      <label class="pull-right">
-                                                          <input type="checkbox" value="">
-                                                      </label>
+                                                    {! anio.description !}
+                                                    <label class="pull-right">
+                                                        <input type="checkbox" value="">
+                                                    </label>
                                                 </h4>
                                             </a>
-                                        </div>                                        
-                                        <div id="collapse{{= value}}" class="panel-collapse collapse">
+                                        </div>
+                                        <div id="{! anio.reference !}" class="panel-collapse collapse">
                                             <div class="panel-body">
                                                     <div class="table-responsive">
                                                         <table class="table table-striped">
@@ -38,29 +38,26 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                {{ for materia in materias: }}
-                                                                    {{ if key == materia.anio: }}
-                                                                        <tr>
-                                                                            <td>{{= materia.nombre }}</td>
-                                                                            <td>
-                                                                                <div class="btn-group" data-toggle="buttons">
-                                                                                    <label class="btn btn-default">
-                                                                                        <input type="checkbox" autocomplete="off">
-                                                                                        <span class="glyphicon glyphicon-ok"></span>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>
-                                                                                <div class="btn-group" data-toggle="buttons">
-                                                                                    <label class="btn btn-default">
-                                                                                        <input type="checkbox" autocomplete="off" checked>
-                                                                                        <span class="glyphicon glyphicon-ok"></span>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    {{ pass }}
-                                                                {{ pass }}
+                                                                <tr ng-repeat="materia in controller.materias" ng-if="anio.key == materia.anio">
+                                                                    <td class="ng-hide">{! materia.id !}</td>
+                                                                    <td>{! materia.nombre !}</td>
+                                                                    <td>
+                                                                        <div class="btn-group" data-toggle="buttons">
+                                                                            <label class="{! controller.getCheckboxRegularesCSSClass(materia.id) !}">
+                                                                                <input type="checkbox" autocomplete="off">
+                                                                                <span class="glyphicon glyphicon-ok"></span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="btn-group" data-toggle="buttons">
+                                                                            <label class="{! controller.getCheckboxAprobadasCSSClass(materia.id) !}">
+                                                                                <input type="checkbox" autocomplete="off" checked>
+                                                                                <span class="glyphicon glyphicon-ok"></span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -68,7 +65,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                {{ pass }}
                             </div>
                 </div>
                 <!-- /.col-lg-12 -->
