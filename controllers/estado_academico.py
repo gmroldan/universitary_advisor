@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
+from MateriaDTO import MateriaDTO
 
 def index():
-    return dict()
-
-def getMaterias():
-    materias = db().select(db.materia.ALL)
-    return dict(materias = materias)
-
-def getRegulares():
+	materias_dto = []
+	materias = db().select(db.materia.ALL)
 	regulares = db().select(db.estado_academico.ALL).first().regulares
-	return dict(regulares = regulares)
-
-def getAprobadas():
 	aprobadas = db().select(db.estado_academico.ALL).first().aprobadas
-	return dict(aprobadas = aprobadas)
+
+	for materia in materias:
+		materia_dto = MateriaDTO(materia.id, materia.nombre, materia.anio, False, False)
+		if materia.id in regulares:
+			materia_dto.setRegular(True)
+
+		if materia.id in aprobadas:
+			materia_dto.setAprobada(True)
+
+		materias_dto.append(materia_dto.getJSON())
+	return dict(materias_dto = materias_dto)
