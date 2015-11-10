@@ -17,3 +17,9 @@ def index():
 
 		materias_dto.append(materia_dto.getJSON())
 	return dict(materias_dto = materias_dto)
+
+def submit():
+	import gluon.contrib.simplejson
+	data = gluon.contrib.simplejson.loads(request.body.read())
+	# Guardar datos en DB.
+	return dict(data = data)

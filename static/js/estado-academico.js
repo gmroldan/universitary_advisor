@@ -13,6 +13,23 @@
       $http.get('/universitary_advisor/estado_academico/index.json').success(function(data) {
           est_acad.materias = data.materias_dto;
       });
+
+	/**
+	* Method to submit a JSON.
+	*/
+	this.submitEstadoAcademico = function() {
+		var result = $http.post('/universitary_advisor/estado_academico/submit.json', this.materias);
+		
+		result.success( function(data, status, headers, config) {
+			this.message = data;
+		});
+
+		result.error( function(data, status, headers, config) {
+			alert( "failure message: " + JSON.stringify({data: data}) );
+		});
+
+		this.materias = [];
+	};
   }]);
 
   var anios_const = [
