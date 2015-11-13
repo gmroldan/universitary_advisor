@@ -3,6 +3,14 @@
 
 	app.controller( 'CargaHorariaController', [ '$http', function($http) {
 		this.dias = dias_const;
+		this.disponibilidades = [
+			{ dia_key: '1', modulos: [ '08:00:00', '08:45:00', '09:30:00' ] },
+			{ dia_key: '2', modulos: [ '08:00:00', '08:45:00', '09:30:00' ] },
+			{ dia_key: '3', modulos: [  ] },
+			{ dia_key: '4', modulos: [ '10:15:00', '11:00:00', '11:45:00' ] },
+			{ dia_key: '5', modulos: [ '10:15:00', '11:00:00', '11:45:00' ] },
+		];
+
 
 		var carga_horaria = this;
 		carga_horaria.horarios = [];
