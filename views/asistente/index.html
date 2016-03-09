@@ -1,0 +1,72 @@
+{{extend 'layout.html'}}
+{{import datetime}}
+<h2>
+    Resultados
+</h2>
+
+<h3>
+    Materias Elegibles
+</h3>
+<span>{{=elegibles}}</span>
+
+<h3>
+    Horario recomendado
+</h3>
+<div class="col-lg-8">
+	     <table class="table table-bordered table-striped">
+	         <thead>
+	             <tr>
+	                 <th></th>
+	                 <th>Lunes</th>
+	                 <th>Martes</th>
+	                 <th>Miércoles</th>
+	                 <th>Jueves</th>
+	                 <th>Viernes</th>
+	             </tr>
+	         </thead>
+             {{modulos_usados=set([mc.split('O')[1] for mc in horarios.keys()])}}
+	         <tbody id="selectable" class="selectable">
+                     {{for modulo in FH:}}
+                       {{if str(modulo) in modulos_usados:}}
+                     <tr>
+                         <th>{{=modulo.hora_inicio}} <br \> a {{=sumar_minutos(modulo.hora_inicio)}}</th>
+                         {{if modulo.turno==1 : clase='success'}}
+                         {{if modulo.turno==2 : clase='warning'}}
+                         {{if modulo.turno==3 : clase='info'}}
+                         {{for d in range(1,6):}}
+                             {{
+                             h = horarios.get("D"+str(d)+"O"+str(modulo.id))
+                             if h is not None:
+                             }}
+                             <td class="{{=clase}}">
+                             <b>{{=h[0]}}</b><br>Comisión K{{=h[1]}}</br>
+                             {{else:}}
+                             <td>
+                             {{pass}}
+                         </td>
+                         {{pass}}
+                     </tr>
+                    {{pass}}
+                     {{pass}}
+	         </tbody>
+	     </table>
+	 </div>
+
+<div class="col-lg-2">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <td class="success">Turno Mañana</td>
+        </tr>
+        <tr>
+            <td class="warning">Turno Tarde</td>
+        </tr>
+        <tr>
+            <td class="info">Turno Noche</td>
+        </tr>
+    </table>
+</div>
+
+<h3>
+    Cantidad de horas cátedra semanales
+</h3>
+<span>{{=len(horarios)}}</span>
