@@ -1,5 +1,0 @@
-# -*- coding: utf-8 -*-
-# intente algo como
-def index():
-    grid = SQLFORM.smartgrid(db.materia, maxtextlength=150)
-    return dict(message="hello from materia.py", grid=grid)

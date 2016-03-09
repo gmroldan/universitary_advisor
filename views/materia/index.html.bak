@@ -1,3 +1,0 @@
-{{extend 'layout.html'}}
-<h1>Está es la plantilla materia/index.html</h1>
-{{=BEAUTIFY(response._vars)}}
