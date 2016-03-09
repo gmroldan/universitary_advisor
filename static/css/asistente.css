@@ -1,0 +1,60 @@
+h1, h2, h3, h5, h6, .sofia{
+/*font-family: Sofia;*/
+font-family: Quicksand;
+}
+
+.sofia{
+    font-family: Sofia;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.btn-asistente { 
+  color: #FFFFFF; 
+  background-color: #009882; 
+  border-color: #041E44;
+  font-family: Sofia;
+  font-weight: bold;
+  letter-spacing: 2px;
+} 
+ 
+.btn-asistente:hover, 
+.btn-asistente:focus, 
+.btn-asistente:active, 
+.btn-asistente.active, 
+.open .dropdown-toggle.btn-asistente { 
+  color: #FFFFFF; 
+  background-color: #E5591F; 
+  border-color: #041E44; 
+} 
+ 
+.btn-asistente:active, 
+.btn-asistente.active, 
+.open .dropdown-toggle.btn-asistente { 
+  background-image: none; 
+} 
+ 
+.btn-asistente.disabled, 
+.btn-asistente[disabled], 
+fieldset[disabled] .btn-asistente, 
+.btn-asistente.disabled:hover, 
+.btn-asistente[disabled]:hover, 
+fieldset[disabled] .btn-asistente:hover, 
+.btn-asistente.disabled:focus, 
+.btn-asistente[disabled]:focus, 
+fieldset[disabled] .btn-asistente:focus, 
+.btn-asistente.disabled:active, 
+.btn-asistente[disabled]:active, 
+fieldset[disabled] .btn-asistente:active, 
+.btn-asistente.disabled.active, 
+.btn-asistente[disabled].active, 
+fieldset[disabled] .btn-asistente.active { 
+  background-color: #009882; 
+  border-color: #041E44; 
+} 
+ 
+.btn-asistente .badge { 
+  color: #009882; 
+  background-color: #FFFFFF; 
+}
