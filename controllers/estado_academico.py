@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from MateriaDTO import MateriaDTO
-
+@auth.requires_login()
 def index():
 	estado_academico = db(db['estado_academico'].usuario==auth.user.id).select().first()
 	
@@ -40,5 +40,5 @@ def submit():
 
 	estado_academico.update_record()
 	db.commit()
-
+	#redirect(URL('asistente', 'index'))
 	return dict(estado_academico = estado_academico)

@@ -1,7 +1,7 @@
 ( function() {
   var app = angular.module('estadoAcademico', []);
 
-  app.controller( 'EstadoAcademicoController', [ '$http', function($http) {
+  app.controller( 'EstadoAcademicoController', [ '$http', '$window', function($http, $window) {
       this.anios = anios_const;
 
       var est_acad = this;
@@ -21,7 +21,7 @@
 		var result = $http.post('/universitary_advisor/estado_academico/submit.json', this.materias);
 		
 		result.success( function(data, status, headers, config) {
-			this.message = data;
+			$window.location.href = "/universitary_advisor/franja_horaria/index";
 		});
 
 		result.error( function(data, status, headers, config) {
