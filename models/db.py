@@ -88,7 +88,6 @@ auth.settings.reset_password_requires_verification = True
 ## >>> rows=db(db.mytable.myfield=='value').select(db.mytable.ALL)
 ## >>> for row in rows: print row.id, row.myfield
 #########################################################################
-
 db.define_table('materia',
                 Field('anio', widget=SQLFORM.widgets.radio.widget, requires=IS_IN_SET(['1', '2', '3', '4', '5']), label='Año'),
                 Field('nombre', unique=True, length=200),
@@ -97,6 +96,9 @@ db.define_table('materia',
                 Field('segundo_cuatrimestre', label='Carga Horaria 2C', length=20),
                 format='%(nombre)s'
                )
+
+
+
 db.define_table('correlativa',
                 Field('materia', db.materia, unique=True),
                 Field('rpc','list:reference materia', label='Regulares para Cursar', widget=SQLFORM.widgets.checkboxes.widget),
@@ -134,14 +136,18 @@ db.define_table('horario_clases',
 
 db.define_table('franja_horaria',
                 Field('usuario',db.auth_user, default=auth.user_id, readable=True, writable=False),
-                Field('dia', requires=IS_IN_SET(['1', '2', '3', '4', '5']), label='Día', length=2),
+                #Field('dia', requires=IS_IN_SET(['1', '2', '3', '4', '5']), label='Día', length=2),
                 Field('modulos', 'list:reference modulo', label='Módulos', widget=SQLFORM.widgets.checkboxes.widget),
                )
 
 for table in db.tables():
     db[table].id.readable = False
 
-
+import datetime
+def sumar_minutos(_time):
+    w = datetime.datetime(2000,1,1,_time.hour, _time.minute)
+    w = w+datetime.timedelta(minutes=45)
+    return w.time()
 
 ## after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)
